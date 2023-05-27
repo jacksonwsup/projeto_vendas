@@ -36,4 +36,3 @@ O métodos utilizados serão:
     >   Ao final o sistema deveverá permitir que o usuário:
 
         >> crie, leia e exclua vendas tanto através da interface e também via requisições HTTP. 
-

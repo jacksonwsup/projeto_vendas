@@ -1,8 +1,9 @@
 import sqlite3
 
-coon = sqlite3.connect('produtos.db')
+produtos = sqlite3.connect('vendas.db')
 
-cursor = conn.cursor()
+#Criar e demais operacoes no DB
+cursor = produtos.cursor()
 
 cursor.execute("""
 CREATE TABLE produtos (
@@ -13,6 +14,8 @@ CREATE TABLE produtos (
 );
 """)
 
-print ("Tabela criada com sucesso.")
 
-coon.close()
+#Inserir dados teste no banco
+cursor.execute("INSERT INTO produtos VALUES("Coca Cola 2L", 8896574821,10.25)")
+
+produtos.commit()

@@ -27,11 +27,30 @@ print(sql)
 con.commit()
 sql = """                                             
 CREATE TABLE IF NOT EXISTS venda (              id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+                                                produto_id INTEGER,
+                                                cliente_id INTEGER,
                                                 name TEXT NOT NULL,
                                                 endereco TEXT NOT NULL,
                                                 produtos TEXT NOT NULL,
-                                                vtotal REAL NOT NULL)"""
+                                                vtotal REAL NOT NULL,
+                                                FOREIGN KEY(produto_id) REFERENCES produto(id),
+                                                FOREIGN KEY(cliente_id) REFERENCES cliente(id)
+                                                )"""
 cur.execute(sql)
+print(sql) 
+con.commit()
+
+sql = """
+CREATE TABLE IF NOT EXISTS itens (              id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+                                                quantidade INTEGER NOT NULL,
+                                                produto_id INTEGER NOT NULL,
+                                                venda_id INTEGER NOT NULL,
+                                                FOREIGN KEY(produto_id) REFERENCES produto(id),
+                                                FOREIGN KEY(venda_id) REFERENCES venda(id)
+                                                )"""
+cur.execute(sql)
+print(sql) 
+con.commit()
 
 def menu():
     
@@ -115,6 +134,9 @@ def mostraCliente():
     return print(f'Visualizar Clientes Cadastrados')
 
 def venda():
+    
+    
+    
     return print(f'Realizar Vendas')
 
 def mostrarVenda():

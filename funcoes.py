@@ -65,6 +65,7 @@ def menu():
         2.1------ VISUALIZAR CLIENTES CADASTRADOS
         3-------- EFETUAR VENDAS
         3.1------ VISUALIZAR VENDAS REALIZADAS
+        4-------- SAIR
         
         '''
     )
@@ -79,10 +80,14 @@ def menu():
         mostraCliente()
     elif selecao == "3":
         venda()
-    else:
+    elif selecao == "3.1":
         mostrarVenda()
+    elif selecao == "4":
+        programaFinalizado()
+    else:
+        opcaoInvalida()
         
-
+    
 def cadastroProduto():
     nome  =  input("Digite o nome do produto     :       ")
     ean   =  input("Digite o GTIN/EAN            :       ")
@@ -93,10 +98,8 @@ def cadastroProduto():
                 """, (nome,ean,valor))
     con.commit()
     print("Dados Salvos")
-    con.close()
-    if (con):
-        con.close()
-        print("SQL connection closed")
+        
+    return menu()
 
 def mostraProduto():
     print(f'Ver Produtos Cadastrados')
@@ -104,7 +107,7 @@ def mostraProduto():
     rows = cur.fetchall()
     for row in rows:
        print(row)   
-    
+    return menu()    
     
 def cadastroCliente():
     nome        =  input("Digite seu nome                :       ")
@@ -117,12 +120,8 @@ def cadastroCliente():
                 """, (nome,telefone,endereco,email))
     con.commit()
     print("Dados Salvos")
-    con.close()
-    if (con):
-        con.close()
-        print("SQL connection closed")
         
-    return print(f'Cadastrar Cliente')
+    return menu()
 
 def mostraCliente():
     print(f'Ver Produtos Cadastrados')
@@ -131,16 +130,31 @@ def mostraCliente():
     for row in rows:
        print(row)  
     
-    return print(f'Visualizar Clientes Cadastrados')
+    return menu()
 
 def venda():
     
+    def exibirOpções():
+        return exibirOpções
     
+    print ("Agora digite o id dos produtos a serem adicionados neste venda:")
     
-    return print(f'Realizar Vendas')
+    return menu()
 
 def mostrarVenda():
     return print(f'Visualizar Vendas')
+
+def programaFinalizado():
+    
+    
+    return print("---------------------------------FIM---------------------------------")
+
+
+def opcaoInvalida():
+    print ("            --------------------------------            ")
+    print ("            Opção inválida tente novamente              ")
+    print ("            --------------------------------            ")
+    return menu()
 
 def main():
     
